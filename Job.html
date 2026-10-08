@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explore New Life - independent Canadian job opportunities and application guidance.">
+<title>Explore New Life | Jobs in Canada</title>
+<style>
+:root{--red:#d62828;--dark:#102a43;--blue:#1769aa;--light:#f5f8fb;--text:#243b53;--white:#fff;--green:#18794e}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;color:var(--text);background:var(--light);line-height:1.6}
+a{text-decoration:none;color:inherit}
+header{background:var(--white);position:sticky;top:0;z-index:10;box-shadow:0 2px 12px #0001}
+.nav{max-width:1150px;margin:auto;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:1.25rem;font-weight:800;color:var(--dark)}
+.logo span{color:var(--red)}
+nav{display:flex;gap:20px;flex-wrap:wrap}
+nav a{font-weight:600}
+nav a:hover{color:var(--red)}
+.hero{background:linear-gradient(135deg,#102a43ee,#1769aaee),url("https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=1800&q=80") center/cover;color:white}
+.hero-inner{max-width:1150px;margin:auto;padding:90px 20px}
+.hero h1{font-size:clamp(2.2rem,5vw,4.2rem);max-width:800px;line-height:1.08;margin-bottom:18px}
+.hero p{font-size:1.15rem;max-width:700px;margin-bottom:28px}
+.btn{display:inline-block;border:0;border-radius:8px;padding:13px 20px;font-weight:700;cursor:pointer;background:var(--red);color:#fff}
+.btn.secondary{background:#fff;color:var(--dark)}
+.btn:hover{filter:brightness(.92)}
+.section{max-width:1150px;margin:auto;padding:65px 20px}
+.section h2{font-size:2rem;color:var(--dark);margin-bottom:10px}
+.muted{color:#627d98}
+.search-box{background:#fff;margin-top:-35px;position:relative;border-radius:14px;padding:22px;box-shadow:0 8px 30px #0002;display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:12px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #bcccdc;border-radius:8px;font:inherit;background:#fff}
+textarea{min-height:130px;resize:vertical}
+.jobs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:25px}
+.card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 3px 14px #0000000d;border:1px solid #e5edf5}
+.card h3{color:var(--dark);margin-bottom:8px}
+.tag{display:inline-block;background:#e9f2fb;color:var(--blue);padding:5px 9px;border-radius:20px;font-size:.82rem;margin:4px 4px 8px 0}
+.salary{font-weight:700;color:var(--green);margin:8px 0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:25px}
+.step{background:#fff;padding:24px;border-radius:12px}
+.number{width:38px;height:38px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-weight:bold;margin-bottom:12px}
+.about{background:#eaf2f8}
+.form-wrap{max-width:760px;background:#fff;padding:28px;border-radius:14px;box-shadow:0 3px 15px #0001}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.full{grid-column:1/-1}
+.notice{background:#fff7e6;border-left:5px solid #f0a202;padding:15px;margin:18px 0;border-radius:6px}
+footer{background:var(--dark);color:#d9e2ec;padding:40px 20px;text-align:center}
+footer strong{color:#fff}
+.small{font-size:.9rem}
+@media(max-width:800px){
+nav{display:none}.search-box{grid-template-columns:1fr}.jobs,.steps{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.hero-inner{padding:65px 20px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="logo" href="#home">Explore <span>New Life</span></a>
+    <nav>
+      <a href="#jobs">Jobs</a><a href="#how">How It Works</a><a href="#about">About</a><a href="#apply">Apply</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <h1>Explore New Life &amp; Career Opportunities in Canada</h1>
+    <p>Discover Canadian job opportunities and practical application guidance in one simple place.</p>
+    <a class="btn" href="#jobs">Find Jobs</a>
+    <a class="btn secondary" href="#apply" style="margin-left:8px">Apply Now</a>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="search-box">
+    <input id="keyword" type="search" placeholder="Job title or keyword">
+    <select id="province">
+      <option value="">All provinces</option><option>Ontario</option><option>Alberta</option>
+      <option>British Columbia</option><option>Manitoba</option><option>Saskatchewan</option>
+      <option>Quebec</option><option>Nova Scotia</option>
+    </select>
+    <select id="category">
+      <option value="">All categories</option><option>Healthcare</option><option>Construction</option>
+      <option>Technology</option><option>Hospitality</option><option>Transport</option>
+    </select>
+    <button class="btn" onclick="filterJobs()">Search</button>
+  </div>
+</section>
+
+<section class="section" id="jobs">
+  <h2>Featured Job Opportunities</h2>
+  <p class="muted">Sample listings are included below. Replace them with verified, current vacancies before publishing.</p>
+  <div class="jobs" id="jobList"></div>
+  <p id="noJobs" class="muted" style="display:none;margin-top:20px">No matching jobs found.</p>
+</section>
+
+<section class="about" id="how">
+  <div class="section">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step"><div class="number">1</div><h3>Find a job</h3><p>Search by keyword, province, or job category.</p></div>
+      <div class="step"><div class="number">2</div><h3>Review requirements</h3><p>Read the employer's qualifications, location, and application instructions.</p></div>
+      <div class="step"><div class="number">3</div><h3>Apply safely</h3><p>Use the employer's official application channel whenever possible.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2>About Explore New Life</h2>
+  <p style="max-width:800px">Explore New Life is an independent job-information website concept designed to help people discover employment opportunities in Canada. We are not the Government of Canada, a Canadian immigration authority, or an employer.</p>
+  <div class="notice"><strong>Safety notice:</strong> Never send money to someone promising a Canadian job or work permit. Verify employers and job offers independently, and use official Canadian government resources for immigration and work-permit information.</div>
+</section>
+
+<section class="section" id="apply">
+  <h2>Applicant Interest Form</h2>
+  <p class="muted" style="margin-bottom:20px">This demo form does not send applications to employers. Connect it to a free form service or your own backend before using it for real applicants.</p>
+  <div class="form-wrap">
+    <form id="applicationForm">
+      <div class="form-grid">
+        <div><label>Full name<br><input required name="name"></label></div>
+        <div><label>Email<br><input required type="email" name="email"></label></div>
+        <div><label>Phone<br><input name="phone"></label></div>
+        <div><label>Job of interest<br><input name="job"></label></div>
+        <div class="full"><label>Message<br><textarea name="message" placeholder="Tell us about your experience and the type of job you are looking for."></textarea></label></div>
+        <div class="full"><button class="btn" type="submit">Submit Interest</button></div>
+      </div>
+    </form>
+    <p id="formMessage" style="margin-top:15px;font-weight:bold"></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p><strong>Explore New Life</strong> — Canadian Job Opportunities</p>
+  <p class="small">Independent website. Not affiliated with or endorsed by the Government of Canada.</p>
+  <p class="small" style="margin-top:8px">© <span id="year"></span> Explore New Life</p>
+</footer>
+
+<script>
+const jobs=[
+ {title:"Registered Nurse",company:"Sample Healthcare Employer",province:"Ontario",category:"Healthcare",salary:"CAD $70,000–$95,000/year"},
+ {title:"Construction Labourer",company:"Sample Construction Employer",province:"Alberta",category:"Construction",salary:"CAD $22–$32/hour"},
+ {title:"Web Developer",company:"Sample Technology Employer",province:"British Columbia",category:"Technology",salary:"CAD $65,000–$90,000/year"},
+ {title:"Hotel Guest Services Associate",company:"Sample Hospitality Employer",province:"Ontario",category:"Hospitality",salary:"CAD $18–$24/hour"},
+ {title:"Long-Haul Truck Driver",company:"Sample Transport Employer",province:"Saskatchewan",category:"Transport",salary:"CAD $25–$38/hour"},
+ {title:"Warehouse Associate",company:"Sample Logistics Employer",province:"Manitoba",category:"Transport",salary:"CAD $19–$25/hour"}
+];
+
+function render(list=jobs){
+ const box=document.getElementById("jobList");
+ document.getElementById("noJobs").style.display=list.length?"none":"block";
+ box.innerHTML=list.map((j,i)=>`
+ <article class="card">
+   <span class="tag">${j.category}</span><span class="tag">${j.province}</span>
+   <h3>${j.title}</h3><p>${j.company}</p><p class="salary">${j.salary}</p>
+   <p class="muted" style="margin-bottom:15px">Sample listing — verify employer and vacancy before applying.</p>
+   <a class="btn" href="#apply" onclick="selectJob(${i})">Apply / Express Interest</a>
+ </article>`).join("");
+}
+function filterJobs(){
+ const k=document.getElementById("keyword").value.toLowerCase();
+ const p=document.getElementById("province").value;
+ const c=document.getElementById("category").value;
+ render(jobs.filter(j=>(!k||(`${j.title} ${j.company}`.toLowerCase().includes(k)))&&(!p||j.province===p)&&(!c||j.category===c)));
+}
+function selectJob(i){document.querySelector('[name="job"]').value=jobs[i]?.title||""}
+document.getElementById("applicationForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ document.getElementById("formMessage").textContent="Thank you. This demo received your information locally in this page; no application was sent to an employer.";
+ e.target.reset();
+});
+document.getElementById("year").textContent=new Date().getFullYear();
+render();
+</script>
+</body>
+</html>
